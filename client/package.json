@@ -1,0 +1,46 @@
+{
+  "name": "Mapbeo",
+  "homepage": "http://mapbeo.org/",
+  "version": "0.1-dev.1",
+  "description": "This website use for searching store and display them on map",
+  "main": "index.html",
+  "scripts": {
+    "test": "grunt karma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buihoanghai/mapbeo"
+  },
+  "keywords": [
+    "Mapbeo"
+  ],
+  "author": "KulturIT ANS",
+  "licenses": {
+    "type": "All rights reserved",
+    "url": "http://mapbeo.org/"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-jshint": "~0.11.3",
+    "grunt-contrib-sass": "~0.8.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-force": "~1.0.0",
+    "grunt-html2js": "~0.2.4",
+    "grunt-include-replace": "~1.2.0",
+    "grunt-jscs": "^2.1.0",
+    "grunt-karma": "~0.8.2",
+    "grunt-touch": "~0.1.0",
+    "jscs": "^2.1.1",
+    "karma": "~0.12.1",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.2"
+  },
+  "optionalDependencies": {}
+}
