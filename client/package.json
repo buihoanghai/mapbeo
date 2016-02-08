@@ -2,7 +2,7 @@
   "name": "Mapbeo",
   "homepage": "http://mapbeo.org/",
   "version": "0.1-dev.1",
-  "description": "This website use for searching store and display them on map",
+  "description": "This website use for searching stores and display them on map",
   "main": "index.html",
   "scripts": {
     "test": "grunt karma"
