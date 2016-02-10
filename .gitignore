@@ -1,3 +1,4 @@
 client/node_modules/
 client/bower_components/
 client/frontend/source/vendor/bower/
+client/frontend/source/grunt_assets/sass.temp/
