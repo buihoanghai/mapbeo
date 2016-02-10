@@ -59,7 +59,34 @@ module.exports = function(grunt) {
                     return dest + src;
                 }
             }
-        } 
+        },
+        html2js: {
+            options: {
+                base: 'frontend/source/',
+                process: function (contents, srcpath) {
+                    return grunt.template.process(contents, {
+                        data: {
+                            version: grunt.config('pkg.version')
+                        }
+                    });
+                },
+                htmlmin: {
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    removeComments: true,
+                    removeEmptyAttributes: true
+                }
+            },
+
+            app: {
+                src: ['<%= app_files.atpl %>'],
+                dest: 'frontend/source/grunt_assets/html2js.temp/app/templates-app.js'
+            },
+            common: {
+                src: ['<%= app_files.ctpl %>'],
+                dest: 'frontend/source/grunt_assets/html2js.temp/app/templates-common.js'
+            }
+        },
     };
 
     grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
