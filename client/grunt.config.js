@@ -15,5 +15,19 @@ module.exports = {
 
     atpl: [ 'frontend/source/app/**/*.tpl.html' ],
     ctpl: [ 'frontend/source/common/**/*.tpl.html' ]
-  },
+ },
+ vendor_files: {
+     js_header: [
+     ],
+     cdn_header: [],
+
+     js_footer: [
+       'frontend/source/vendor/bower/underscore.string/dist/underscore.string.js'
+     ],
+     cdn_footer: [
+     ],
+
+     assets: [
+     ]
+ },
 };
