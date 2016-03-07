@@ -79,6 +79,88 @@ module.exports = function (grunt) {
                   }
                 ]
             },
+            develop_css: {
+                src: ['main.css'],
+                dest: 'frontend/dist/develop/assets/',
+                cwd: 'frontend/source/grunt_assets/sass.temp/',
+                expand: true,
+                rename: function (dest, src) {
+                    var ver = grunt.config('pkg.version');
+                    return dest + "client." + ver + ".css";
+                },
+                options: {
+                    process: function (contents, srcpath) {
+                        return grunt.template.process(contents, {
+                            data: {
+                                version: grunt.config('pkg.version')
+                            }
+                        });
+                    }
+                }
+            },
+            develop_appjs: {
+                src: ['<%= app_files.js %>'],
+                dest: 'frontend/dist/develop/assets/js/',
+                expand: true,
+                rename: function (dest, src) {
+                    var name = src.substring(0, src.lastIndexOf("."));
+                    var type = src.substring(src.lastIndexOf(".") + 1);
+                    var ver = grunt.config('pkg.version');
+                    var cwd = "frontend/source/";
+
+                    // Remove cwd from name
+                    var _check = name.substring(0, cwd.length);
+                    if (_check == cwd) {
+                        name = name.substring(cwd.length);
+                    }
+
+                    if (name && type) {
+                        src = [name, ver, type].join(".");
+                    }
+
+                    return dest + src;
+                }
+            },
+            develop_vendorjs: {
+                src: ['<%= vendor_files.js_header %>', '<%= vendor_files.js_footer %>'],
+                dest: 'frontend/dist/develop/assets/js/',
+                expand: true,
+                rename: function (dest, src) {
+                    var name = src.substring(0, src.lastIndexOf("."));
+                    var type = src.substring(src.lastIndexOf(".") + 1);
+                    var ver = grunt.config('pkg.version');
+                    var cwd = "frontend/source/";
+
+                    // Remove cwd from name
+                    var _check = name.substring(0, cwd.length);
+                    if (_check == cwd) {
+                        name = name.substring(cwd.length);
+                    }
+
+                    if (name && type) {
+                        src = [name, ver, type].join(".");
+                    }
+
+                    return dest + src;
+                }
+            },
+            develop_html2js: {
+                src: ['<%= html2js.app.dest %>', '<%= html2js.common.dest %>'],
+                dest: 'frontend/dist/develop/assets/js/app/',
+                expand: true,
+                flatten: true,
+                rename: function (dest, src) {
+                    var name = src.substring(0, src.lastIndexOf("."));
+                    var type = src.substring(src.lastIndexOf(".") + 1);
+                    var ver = grunt.config('pkg.version');
+
+                    if (name && type) {
+                        src = [name, ver, type].join(".");
+                    }
+
+                    return dest + src;
+                }
+            },
         },
         html2js: {
             options: {
@@ -162,17 +244,19 @@ module.exports = function (grunt) {
     grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
     //Test tasks
-    grunt.registerTask('sass_develop', [
-        'sass:develop'
-    ]);
-    grunt.registerTask('clean_develop', [
-        'clean:develop'
-    ]);
-    grunt.registerTask('copy_develop_assets', [
-        'copy:develop_assets'
-    ]);
-    grunt.registerTask('index_develop', [
-      'includereplace:index',  'copy:develop_index' 
+    grunt.registerTask('develop', [
+        'clean:develop',
+        'html2js',
+        'sass:develop',
+        'copy:develop_assets',
+        'copy:develop_css',
+        'copy:develop_vendorjs',
+        'copy:develop_html2js',
+        'copy:develop_appjs',
+        'index_scripts:develop_header',
+        'index_scripts:develop_footer',
+        'includereplace:index',
+        'copy:develop_index'
     ]);
     // Short-hand tasks
 

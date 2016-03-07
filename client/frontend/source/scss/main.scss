@@ -1,3 +1,5 @@
-﻿body{
+﻿/* include module*/
+@import '../app/home/_scss/home.scss';
+body{
 	text-size:16px;
 }
