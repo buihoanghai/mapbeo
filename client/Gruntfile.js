@@ -239,8 +239,53 @@ module.exports = function (grunt) {
             unit: ['<%= app_files.jsunit %>']
         },
 
-    };
+    karmaconfig: {
+      unit: {
+        source: 'client/source/grunt_assets/karma-unit.tpl.js',
+        target_dir: 'client/source/grunt_assets/karma.temp/',
+        target_name: 'karma-unit.js',
+        base: 'client/source/',
+        cdn: [
+          '<%= vendor_files.cdn_header %>',
+          '<%= vendor_files.cdn_footer %>',
+        ],
+        src: [
+          '<%= vendor_files.js_header %>',
+          '<%= vendor_files.js_footer %>',
+          'client/source/grunt_assets/html2js.temp/**/templates-*.js',
+          '<%= test_files.js %>',
+          '<%= app_files.js %>',
+          '<%= app_files.jsunit %>'
+        ]
+      }
+    },
+	  karma_run: {
+      options: {
+        configFile: '<%= karmaconfig.unit.target_dir %><%= karmaconfig.unit.target_name %>',
+		 runnerPort: 9999,
+                browsers: ['Chrome']
+      },
+      unit: {
+        background: true,
+        port: 9877
+      },
+      continuous: {
+        background: false,
+        singleRun: false,
+        port: 9877
+      },
+	  dev: {
+                reporters: 'dots'
+            }
+    },
 
+
+
+    };
+	
+	 grunt.renameTask( 'karma', 'karma_run' );
+	 
+    grunt.registerTask( 'karma', [ 'karmaconfig', 'karma_run:continuous', 'karma_run:unit'] );
     grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
     //Test tasks
