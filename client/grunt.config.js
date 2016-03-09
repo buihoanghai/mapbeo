@@ -7,7 +7,7 @@ module.exports = {
       '!frontend/source/common/**/*.spec.js',
 
       'frontend/source/app/*/*.js',
-      'frontend/source/app/app.js',
+      'frontend/source/app/*.js',
       'frontend/source/app/*/**/*.js',
       '!frontend/source/app/**/*.spec.js'
     ],
@@ -26,11 +26,8 @@ module.exports = {
      cdn_header: [],
 
      js_footer: [
-       'frontend/source/vendor/bower/underscore.string/dist/underscore.string.js',
+       'frontend/source/vendor/bower/underscore/underscore.js',
          'frontend/source/vendor/bower/angular/angular.js',
-         'frontend/source/vendor/bower/angular-local-storage/dist/angular-local-storage.js',
-         'frontend/source/vendor/bower/angular-resource/angular-resource.js',
-         'frontend/source/vendor/bower/angular-sanitize/angular-sanitize.js',
          'frontend/source/vendor/bower/angular-ui-router/release/angular-ui-router.js',
      ],
      cdn_footer: [

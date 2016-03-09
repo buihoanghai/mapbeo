@@ -4,8 +4,18 @@ module.exports = function ( karma ) {
     basePath: '../../',
 
     files: [
+      'vendor/bower/underscore/underscore.js',
+      'vendor/bower/angular/angular.js',
+      'vendor/bower/angular-ui-router/release/angular-ui-router.js',
+      'grunt_assets/html2js.temp/app/templates-app.js',
+      'grunt_assets/html2js.temp/app/templates-common.js',
+      'common/route-config-service/route-config.js',
+      'common/route-config-service/services/route-config-service.js',
+      'app/home/home.js',
       'app/app.js',
+      'app/route.js',
       'app/app/controllers/app-controller.js',
+      'app/home/controllers/home-controller.js',
       
     ],
     frameworks: [ 'jasmine' ],

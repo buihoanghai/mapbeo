@@ -2,15 +2,18 @@
 <html ng-app="app" ng-controller="app.appController">
 <head>
     <meta charset="utf-8">
-    <base href="/">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <meta name="fragment" content="!">
-    <title>map beo</title>
+    <title>AngularJS • Todo</title>
     <link rel="stylesheet" href="assets/client.<%= version %>.css" />
     @@include('grunt_assets/index.scripts.header.html')
 </head>
 <body>
+  <div >
+    {{test11}}
+    <a ui-sref="home">link</a>
+    <div ui-view="main"></div>
+  </div>
     @@include('grunt_assets/index.scripts.footer.html')
 </body>
 </html>

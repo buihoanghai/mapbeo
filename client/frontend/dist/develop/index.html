@@ -2,24 +2,30 @@
 <html ng-app="app" ng-controller="app.appController">
 <head>
     <meta charset="utf-8">
-    <base href="/">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <meta name="fragment" content="!">
-    <title>map beo</title>
+    <title>AngularJS • Todo</title>
     <link rel="stylesheet" href="assets/client.1.0.1-dev.1.css" />
       
   
 </head>
 <body>
+  <div >
+    {{test11}}
+    <a ui-sref="home">link</a>
+    <div ui-view="main"></div>
+  </div>
       
-  <script type="text/javascript" src="/assets/js/vendor/bower/angular/angular.1.0.1-dev.1.js"></script>
-<script type="text/javascript" src="/assets/js/vendor/bower/angular-local-storage/dist/angular-local-storage.1.0.1-dev.1.js"></script>
-<script type="text/javascript" src="/assets/js/vendor/bower/angular-resource/angular-resource.1.0.1-dev.1.js"></script>
-<script type="text/javascript" src="/assets/js/vendor/bower/angular-sanitize/angular-sanitize.1.0.1-dev.1.js"></script>
+  <script type="text/javascript" src="/assets/js/vendor/bower/underscore/underscore.1.0.1-dev.1.js"></script>
+<script type="text/javascript" src="/assets/js/vendor/bower/angular/angular.1.0.1-dev.1.js"></script>
 <script type="text/javascript" src="/assets/js/vendor/bower/angular-ui-router/release/angular-ui-router.1.0.1-dev.1.js"></script>
+<script type="text/javascript" src="/assets/js/common/route-config-service/route-config.1.0.1-dev.1.js"></script>
+<script type="text/javascript" src="/assets/js/common/route-config-service/services/route-config-service.1.0.1-dev.1.js"></script>
+<script type="text/javascript" src="/assets/js/app/home/home.1.0.1-dev.1.js"></script>
 <script type="text/javascript" src="/assets/js/app/app.1.0.1-dev.1.js"></script>
+<script type="text/javascript" src="/assets/js/app/route.1.0.1-dev.1.js"></script>
 <script type="text/javascript" src="/assets/js/app/app/controllers/app-controller.1.0.1-dev.1.js"></script>
+<script type="text/javascript" src="/assets/js/app/home/controllers/home-controller.1.0.1-dev.1.js"></script>
 <script type="text/javascript" src="/assets/js/app/templates-app.1.0.1-dev.1.js"></script>
 <script type="text/javascript" src="/assets/js/app/templates-common.1.0.1-dev.1.js"></script>
 
