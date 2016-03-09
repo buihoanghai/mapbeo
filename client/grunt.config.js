@@ -16,6 +16,10 @@ module.exports = {
     atpl: [ 'frontend/source/app/**/*.tpl.html' ],
     ctpl: [ 'frontend/source/common/**/*.tpl.html' ]
  },
+  test_files: {
+    js: [ 'client/source/vendor/bower/angular-mocks/angular-mocks.js' ]
+  },
+
  vendor_files: {
      js_header: [
      ],
