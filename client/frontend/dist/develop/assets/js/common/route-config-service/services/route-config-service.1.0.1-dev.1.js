@@ -31,7 +31,7 @@ angular.module('common.routeConfig')
 
     this.$get = function() {
       return this;
-    };
+    };   
 
     this.config = function(url, name, options) {
       //- State name

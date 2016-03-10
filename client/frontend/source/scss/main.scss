@@ -1,5 +1,11 @@
-﻿/* include module*/
-@import '../app/home/_scss/home.scss';
-body{
-	text-size:16px;
+﻿body {
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* include module*/
+@import '../app/home/_scss/home.scss';

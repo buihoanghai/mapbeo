@@ -1,1 +1,2 @@
-angular.module('common.routeConfig', []);
+angular.module('common.routeConfig', []);    
+  

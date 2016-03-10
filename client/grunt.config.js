@@ -17,7 +17,7 @@ module.exports = {
     ctpl: [ 'frontend/source/common/**/*.tpl.html' ]
  },
   test_files: {
-    js: [ 'client/source/vendor/bower/angular-mocks/angular-mocks.js' ]
+    js: [ 'frontend/source/vendor/bower/angular-mocks/angular-mocks.js' ]
   },
 
  vendor_files: {
@@ -26,8 +26,10 @@ module.exports = {
      cdn_header: [],
 
      js_footer: [
+
        'frontend/source/vendor/bower/underscore/underscore.js',
          'frontend/source/vendor/bower/angular/angular.js',
+		  'frontend/source/vendor/bower/angular-sanitize/angular-sanitize.js',
          'frontend/source/vendor/bower/angular-ui-router/release/angular-ui-router.js',
      ],
      cdn_footer: [

@@ -38,7 +38,10 @@ module.exports = function (grunt) {
             },
             develop: {
                 src: ["frontend/dist/develop/*"]
-            }
+            },
+			index_scripts_temp: { src: [ '<%= index_scripts.develop_header.result_dir %>' ] },
+			sass_temp: { src: [ '<%= sass.develop.options.cssDir %>' ] },
+			index_temp: { src: [ 'frontend/source/grunt_assets/index.temp/' ] }
         },
         copy: {
             develop_assets: {
@@ -278,6 +281,55 @@ module.exports = function (grunt) {
 					reporters: 'dots'
 				}
     },
+    watch: {
+      options: {
+        spawn: false
+      },
+
+      app_js: {
+        files: [ '<%= app_files.js %>' ],
+        tasks: [ 'index_develop',
+                 'copy:develop_appjs',
+			//	 'karma:unit:run' 
+				 ]
+      },
+
+      app_unit: {
+        files: [ '<%= app_files.jsunit %>' ],
+        tasks: [ /*, 'karma:unit:run'*/ ],
+        options: {
+          spawn: false
+        }
+      },
+
+      assets: {
+        files: [ 'frontend/source/assets/**/*' ],
+        tasks: [ 'copy:develop_assets' ], 
+      },
+
+      index: {
+        files: [
+          'frontend/source/index.html',
+          'frontend/source/grunt_assets/index.scripts.*.html'
+        ],
+        tasks: [ 'index_develop' ],       
+      },
+
+      tpls: {
+        files: [ '<%= app_files.atpl %>', '<%= app_files.ctpl %>' ],
+        tasks: [ 'html2js', 'copy:develop_html2js' ],      
+      },
+
+      scss: {
+        files: [ 'frontend/source/**/*.scss', 'frontend/source/**/*.sass' ],
+        tasks: [ 'sass_develop' ],    
+      },
+
+        grunt_config: {
+        files: [ 'grunt.config.js' ],
+        tasks: [ 'develop_core' ],
+      }
+    }
 
 
 
@@ -289,19 +341,23 @@ module.exports = function (grunt) {
     grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
     //Test tasks
+	
+	 grunt.registerTask( 'index_develop', [
+    'index_scripts:develop_header', 'index_scripts:develop_footer',
+    'includereplace:index', 'copy:develop_index',
+    'clean:index_scripts_temp', 'clean:index_temp'
+  ]);
+   grunt.registerTask( 'sass_develop', [
+    'sass:develop', 'copy:develop_css'
+  ]);
+   grunt.registerTask( 'develop_core', [
+    'clean:develop', 'html2js', 'copy:develop_html2js',
+    'copy:develop_assets', 'sass_develop', 'copy:develop_appjs',
+    'copy:develop_vendorjs', 'index_develop'
+  ]);
     grunt.registerTask('develop', [
-        'clean:develop',
-        'html2js',
-        'sass:develop',
-        'copy:develop_assets',
-        'copy:develop_css',
-        'copy:develop_vendorjs',
-        'copy:develop_html2js',
-        'copy:develop_appjs',
-        'index_scripts:develop_header',
-        'index_scripts:develop_footer',
-        'includereplace:index',
-        'copy:develop_index'
+       'develop_core',
+		 'watch'
     ]);
     // Short-hand tasks
 
