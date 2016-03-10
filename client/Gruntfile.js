@@ -30,7 +30,19 @@ module.exports = function (grunt) {
                 files: {
                     'frontend/source/grunt_assets/sass.temp/main.css': 'frontend/source/scss/main.scss'
                 }
-            }
+            },
+			    release: {
+        options: {
+          style: 'compressed',
+          sourcemap: 'none',
+          lineNumbers: false,
+          cacheLocation: 'frontend/source/grunt_assets/sass.temp/',
+    
+        },
+        files: {
+          'frontend/source/grunt_assets/sass.temp/main.css': 'frontend/source/scss/main.scss'
+        }
+      },
         },
         clean: {
             options: {
@@ -41,7 +53,13 @@ module.exports = function (grunt) {
             },
 			index_scripts_temp: { src: [ '<%= index_scripts.develop_header.result_dir %>' ] },
 			sass_temp: { src: [ '<%= sass.develop.options.cssDir %>' ] },
-			index_temp: { src: [ 'frontend/source/grunt_assets/index.temp/' ] }
+			index_temp: { src: [ 'frontend/source/grunt_assets/index.temp/' ] },
+			  release_full: {
+				src : [ 'frontend/dist/full/*', '!client/dist/full/README.md' ]
+			},
+			release_minified: {
+				src : [ 'frontend/dist/minified/*', '!client/dist/minified/README.md' ]
+			}
         },
         copy: {
             develop_assets: {
@@ -89,7 +107,7 @@ module.exports = function (grunt) {
                 expand: true,
                 rename: function (dest, src) {
                     var ver = grunt.config('pkg.version');
-                    return dest + "client." + ver + ".css";
+                    return dest + "mb." + ver + ".css";
                 },
                 options: {
                     process: function (contents, srcpath) {
@@ -164,6 +182,69 @@ module.exports = function (grunt) {
                     return dest + src;
                 }
             },
+			  release_full: {
+        src: [ '**', '!README.md' ],
+        dest: 'frontend/dist/full/',
+        cwd: 'frontend/dist/develop/',
+        expand: true
+      },
+      release_assets: {
+        src: [ '**' ],
+        dest: 'frontend/dist/minified/assets/',
+        cwd: 'frontend/source/assets/',
+        expand: true,
+        rename: function ( dest, src ) {
+
+          var name = src.substring( 0, src.lastIndexOf(".") );
+          var type = src.substring( src.lastIndexOf(".") + 1 );
+          var ver  = grunt.config('pkg.version');
+
+          if (name && type) {
+            src = [name, ver, type].join(".");
+          }
+
+          return dest + src;
+        }
+      },
+      release_index: {
+        options: {
+          rename: false,
+          process: function (contents, srcpath) {
+            return grunt.template.process( contents, {
+              data: {
+                version: grunt.config('pkg.version')
+              }
+            });
+          },
+        },
+        files: [
+          {
+            src: [ 'index.html' ],
+            dest: 'frontend/dist/minified/',
+            cwd: 'frontend/source/grunt_assets/index.temp/',
+            expand: true
+          }
+        ]
+      },
+      release_css: {
+        src: [ 'main.css' ],
+        dest: 'frontend/dist/minified/assets/',
+        cwd: 'frontend/source/grunt_assets/sass.temp/',
+        expand: true,
+        rename: function ( dest, src ) {
+          var ver  = grunt.config('pkg.version');
+          return dest + "mb." + ver + ".css";
+        },
+        options: {
+          process: function (contents, srcpath) {
+            return grunt.template.process( contents, {
+              data: {
+                version: grunt.config('pkg.version')
+              }
+            });
+          }
+        }
+      },
         },
         html2js: {
             options: {
@@ -192,7 +273,45 @@ module.exports = function (grunt) {
                 dest: 'frontend/source/grunt_assets/html2js.temp/app/templates-common.js'
             }
         },
-
+  concat: {
+      options: {
+    
+        stripBanners: true,
+      },
+      header: {
+        src: [ '<%= vendor_files.js_header %>' ],
+        dest: 'frontend/dist/minified/assets/js/mb.header.<%= pkg.version %>.js'
+      },
+      footer: {
+        src: [
+          '<%= vendor_files.js_footer %>',
+          'frontend/source/grunt_assets/module.prefix',
+          '<%= app_files.js %>',
+          '<%= html2js.common.dest %>',
+          '<%= html2js.app.dest %>',
+          'frontend/source/grunt_assets/module.suffix'
+        ],
+        dest: 'frontend/dist/minified/assets/js/mb.footer.<%= pkg.version %>.js'
+      }
+    },
+	 uglify: {
+      header: {
+        options: {
+       
+        },
+        files: {
+          '<%= concat.header.dest %>': '<%= concat.header.dest %>'
+        }
+      },
+      footer: {
+        options: {
+       
+        },
+        files: {
+          '<%= concat.footer.dest %>': '<%= concat.footer.dest %>'
+        }
+      }
+    },
         index_scripts: {
             develop_header: {
                 dir: 'frontend/source/',
@@ -220,7 +339,25 @@ module.exports = function (grunt) {
                       dest: 'app/'
                   }
                 ]
-            }
+            },
+			  release_header: {
+        dir: 'frontend/source/',
+        result_dir: 'frontend/source/grunt_assets/index.scripts.temp/',
+        file: 'grunt_assets/index.scripts.header.html',
+        base: 'frontend/dist/minified/assets/js/',
+
+        cdn: [ '<%= vendor_files.cdn_header %>' ],
+        src: [ 'frontend/dist/minified/assets/js/mb.header.<%= pkg.version %>.js' ]
+      },
+      release_footer: {
+        dir: 'frontend/source/',
+        result_dir: 'frontend/source/grunt_assets/index.scripts.temp/',
+        file: 'grunt_assets/index.scripts.footer.html',
+        base: 'frontend/dist/minified/assets/js/',
+
+        cdn: [ '<%= vendor_files.cdn_footer %>' ],
+        src: [ 'frontend/dist/minified/assets/js/mb.footer.<%= pkg.version %>.js' ]
+      },
         },
         includereplace: {
             index: {
@@ -341,7 +478,7 @@ module.exports = function (grunt) {
     grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
     //Test tasks
-	
+	//develop
 	 grunt.registerTask( 'index_develop', [
     'index_scripts:develop_header', 'index_scripts:develop_footer',
     'includereplace:index', 'copy:develop_index',
@@ -359,6 +496,31 @@ module.exports = function (grunt) {
        'develop_core',
 		 'watch'
     ]);
+	
+	//release
+	 grunt.registerTask( 'index_release', [
+    'index_scripts:release_header', 'index_scripts:release_footer',
+    'includereplace:index', 'copy:release_index',
+    'clean:index_scripts_temp', 'clean:index_temp'
+  ]);
+   grunt.registerTask( 'sass_release', [
+    'sass:release', 'copy:release_css'//, 'clean:sass_temp'
+  ]);
+   grunt.registerTask( 'release_full', [
+    'clean:release_full', 'develop_core', 'copy:release_full'
+  ]);
+
+  grunt.registerTask( 'release_minified', [
+    'clean:release_minified', 'develop_core', 'sass_release',
+    'concat:header', 'concat:footer', 'uglify:header', 'uglify:footer',
+    'index_release', 'copy:release_assets'
+  ]);
+
+  grunt.registerTask( 'release', [
+    'clean:release_full', 'clean:release_minified', 'develop_core',
+    'copy:release_full', 'sass_release', 'concat:header', 'concat:footer',
+    'uglify:header', 'uglify:footer', 'index_release', 'copy:release_assets'
+  ]);
     // Short-hand tasks
 
 

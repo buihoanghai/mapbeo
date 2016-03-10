@@ -1,0 +1,133 @@
+/* line 1, ../../scss/main.scss */
+body {
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* line 5, ../../scss/main.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* include module*/
+/* line 2, ../../app/home/_scss/home.scss */
+.home .box-content {
+  width: 442px;
+  height: 438px;
+  border: 5px solid #BBADA0;
+  padding: 0;
+  margin: 0;
+  background-color: #BBADA0;
+  border-radius: 6px;
+}
+/* line 12, ../../app/home/_scss/home.scss */
+.home .box {
+  border-radius: 6px;
+  margin: 5px;
+  height: 98px;
+  width: 98px;
+  display: inline-block;
+  text-align: center;
+  text-align: center;
+  border: 1px solid #BAAC9F;
+  font-weight: bold;
+}
+/* line 25, ../../app/home/_scss/home.scss */
+.home .text-1-char {
+  font-size: 65px !important;
+  padding-top: 5px;
+}
+/* line 30, ../../app/home/_scss/home.scss */
+.home .text-2-char {
+  font-size: 58px !important;
+  padding-top: 11px;
+}
+/* line 35, ../../app/home/_scss/home.scss */
+.home .text-3-char {
+  font-size: 47px !important;
+  padding-top: 21px;
+}
+/* line 40, ../../app/home/_scss/home.scss */
+.home .text-4-char {
+  font-size: 36px !important;
+  padding-top: 32px;
+}
+/* line 45, ../../app/home/_scss/home.scss */
+.home .text-5-char {
+  font-size: 31px !important;
+  padding-top: 37px;
+}
+/* line 50, ../../app/home/_scss/home.scss */
+.home .value-2 {
+  background-color: #EEE4DA;
+  color: #776E65;
+}
+/* line 55, ../../app/home/_scss/home.scss */
+.home .value-4 {
+  background-color: #EDE0C8;
+  color: #776E65;
+}
+/* line 60, ../../app/home/_scss/home.scss */
+.home .value-8 {
+  background-color: #F2B278;
+  color: #F9F6F2;
+}
+/* line 65, ../../app/home/_scss/home.scss */
+.home .value-16 {
+  background-color: #F59563;
+  color: #f9f6f2;
+}
+/* line 70, ../../app/home/_scss/home.scss */
+.home .value-32 {
+  background-color: #F67C5E;
+  color: #f9f6f2;
+}
+/* line 75, ../../app/home/_scss/home.scss */
+.home .value-64 {
+  background-color: #F65E3B;
+  color: #f9f6f2;
+}
+/* line 80, ../../app/home/_scss/home.scss */
+.home .value-128 {
+  background-color: #EDCF72;
+  color: #F9F6F2;
+}
+/* line 85, ../../app/home/_scss/home.scss */
+.home .value-256 {
+  background-color: #EDCC61;
+  color: #f9f6f2;
+}
+/* line 90, ../../app/home/_scss/home.scss */
+.home .value-512 {
+  background-color: #EDC850;
+  color: #f9f6f2;
+}
+/* line 95, ../../app/home/_scss/home.scss */
+.home .value-1024 {
+  background-color: #EDC53F;
+  color: #F9F6F2;
+}
+/* line 100, ../../app/home/_scss/home.scss */
+.home .value-2048 {
+  background-color: #EDC22E;
+  color: #F9F6F2;
+}
+/* line 105, ../../app/home/_scss/home.scss */
+.home .value-max {
+  background-color: #3C3A32;
+  color: #F9F6F2;
+}
+/* line 110, ../../app/home/_scss/home.scss */
+.home .value-none {
+  background-color: #CDC1B4;
+  color: #CDC1B4;
+}
+/* line 115, ../../app/home/_scss/home.scss */
+.home .container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/* line 121, ../../app/home/_scss/home.scss */
+.home .game-over {
+  opacity: .5;
+}

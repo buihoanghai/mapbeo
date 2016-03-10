@@ -1,17 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="app" ng-controller="app.appController">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <meta name="fragment" content="!">
     <title>AngularJS • 2048</title>
-    <link rel="stylesheet" href="assets/mb.<%= version %>.css" />
-    @@include('grunt_assets/index.scripts.header.html')
+    <link rel="stylesheet" href="assets/mb.1.0.1-dev.1.css" />
+      
+  <script type="text/javascript" src="/assets/js/mb.header.1.0.1-dev.1.js"></script>
+  
 </head>
 <body> 
   <div>  
     <div ui-view="main"></div>
   </div>
-    @@include('grunt_assets/index.scripts.footer.html')
+      
+  <script type="text/javascript" src="/assets/js/mb.footer.1.0.1-dev.1.js"></script>
+
+
 </body>
 </html> 
