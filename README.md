@@ -7,6 +7,7 @@ Software requirements
 	Download here: https://nodejs.org/en/download/
 		2) Ruby
 	Download here: http://rubyinstaller.org/downloads/
+	
 Step by step
 	Open terminal at your folder
 	1) bower: http://bower.io/
