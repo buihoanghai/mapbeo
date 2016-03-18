@@ -23,7 +23,7 @@ Step by step
 			npm install
 	3) scss: https://www.npmjs.com/package/grunt-contrib-sass
 		install scss:
-			gem install sass (https://www.npmjs.com/package/grunt-contrib-sass)
+			gem install sass 
 	4) For develop
 		grunt develop
 	5) For production
