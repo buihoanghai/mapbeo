@@ -10,6 +10,7 @@ Software requirements
 	
 Step by step
 	Open terminal at your folder
+	
 	1) bower: http://bower.io/
 		install bower: 
 		
