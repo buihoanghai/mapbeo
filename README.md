@@ -9,7 +9,7 @@ Software requirements
 	Download here: http://rubyinstaller.org/downloads/
 	
 Step by step
-	Open terminal at your folder
+	Open terminal at client folder
 	
 	1) bower: http://bower.io/
 		install bower: 
